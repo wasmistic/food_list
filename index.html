@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>food_list</title>
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <section v-for="(f,i) in food" :key="i">
+                <h1>{{f.name}}</h1>
+                <h1>Price:{{f.price}}</h1>
+                <div class="list">
+                    <h2>{{f.count}}</h2>
+                    <div class="btn">
+                        <button v-on:click="minus(i)">-</button><button v-on:click="btn(i)">+</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script>
+     var t = new Vue({
+        el:"#app",
+    data:{
+            food:[{name:"Rice",price:"450",count:0},{name:"Beans",price:"500",count:0},{name:"Eba",price:"750",count:0},{name:"Yam",price:"250",count:0},{name:"Bread",price:"350",count:0},{name:"Banana",price:"120",count:0},{name:"cucumber",price:"200",count:0},{name:"Apple",price:"400",count:0},{name:"Wheat",price:"1750",count:0}] 
+    },
+    methods:{
+        btn(i){
+            this.food[i].count++;
+            this.food[i].price++
+            console.log( this.food[i].count++)
+        },
+      
+        minus(i){
+            if(this.food[i].count==0 || this.food[i].price==0){
+
+            }else{
+                this.food[i].count--;
+                this.food[i].price--
+            }  
+            }
+        },
+
+})
+</script>
+
+<style scoped>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    
+    .container{
+        margin-inline:auto;
+        width: min(90%, 70.5rem);
+    }
+    
+    section{
+        width: 40%;
+       border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 1.5rem;
+        box-shadow: 0px 0px 3px rgb(26, 25, 25);
+        margin:2.5rem auto;
+    }
+    @media(max-width:800px){
+        section{
+            width: 100%;
+            margin:2rem 0;
+        }
+    }
+    @media(max-width:400px){
+        section{
+            width: 100%;
+            margin:2rem 0;
+            flex-direction: column;
+        }
+        .list{
+            margin: 1.6rem 0 0 0;
+        }
+    }
+    button{
+        padding: 0.25rem 2rem;
+        outline: none;
+        border-radius:5px;
+        border: none;
+        font-size: 1.2rem;
+        color: #fff;
+        background-color:rgb(74, 199, 74);
+        cursor: pointer;
+    }
+    .list{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 40%;
+    }
+    .list h2{
+        margin-bottom: 2rem;
+        background-color: #000fff;
+        padding: 0.35rem;
+        color: #fff;
+    }
+    button:first-child{
+        background-color:#ff0000;
+        margin-right: 0.35rem;
+    }
+    .btn{
+        display: flex;
+        align-items: center;
+    }
+    </style>
+
+</body>
+</html>
